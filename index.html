@@ -75,6 +75,54 @@
             100% { transform: translate(-110vw, 150px) rotate(0deg) scale(0.8); opacity: 0; }
         }
 
+        /* Mariposas */
+        .butterfly-container {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .butterfly-1 { top: 10%; left: 5%; animation: butterfly-flight-1 20s infinite ease-in-out; }
+        .butterfly-2 { top: 25%; right: 10%; animation: butterfly-flight-2 22s infinite ease-in-out; }
+        .butterfly-3 { top: 45%; left: 15%; animation: butterfly-flight-1 18s infinite ease-in-out 3s; }
+        .butterfly-4 { top: 60%; right: 8%; animation: butterfly-flight-2 24s infinite ease-in-out 2s; }
+        .butterfly-5 { top: 75%; left: 12%; animation: butterfly-flight-1 21s infinite ease-in-out 1s; }
+        .butterfly-6 { top: 35%; right: 20%; animation: butterfly-flight-2 19s infinite ease-in-out 4s; }
+
+        @keyframes butterfly-flight-1 {
+            0% { transform: translate(0, 0) rotateZ(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translate(150px, 100px) rotateZ(15deg); }
+            90% { opacity: 1; }
+            100% { transform: translate(0, 200px) rotateZ(0deg); opacity: 0; }
+        }
+
+        @keyframes butterfly-flight-2 {
+            0% { transform: translate(0, 0) rotateZ(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translate(-150px, 100px) rotateZ(-15deg); }
+            90% { opacity: 1; }
+            100% { transform: translate(0, 200px) rotateZ(0deg); opacity: 0; }
+        }
+
+        .butterfly-wings {
+            animation: flap 0.5s infinite;
+        }
+
+        @keyframes flap {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.3); }
+        }
+
+        /* Lazos decorativos */
+        .silk-ribbon {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -118,6 +166,107 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_145d2e2cce.mp3?filename=lullaby-box-3456.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
+
+    <!-- Mariposas flotantes -->
+    <div class="butterfly-container butterfly-1">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f472b6" />
+                    <stop offset="100%" stop-color="#ec4899" />
+                </linearGradient>
+            </defs>
+            <!-- Ala izquierda -->
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-pink)" />
+            <!-- Ala derecha -->
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-pink)" />
+            <!-- Cuerpo -->
+            <circle cx="50" cy="50" r="6" fill="#db2777" />
+            <!-- Antenas -->
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#db2777" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#db2777" stroke-width="2" />
+        </svg>
+    </div>
+
+    <div class="butterfly-container butterfly-2">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fda4af" />
+                    <stop offset="100%" stop-color="#f43f5e" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-rose)" />
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-rose)" />
+            <circle cx="50" cy="50" r="6" fill="#be123c" />
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#be123c" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#be123c" stroke-width="2" />
+        </svg>
+    </div>
+
+    <div class="butterfly-container butterfly-3">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a" />
+                    <stop offset="100%" stop-color="#eab308" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-gold)" />
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-gold)" />
+            <circle cx="50" cy="50" r="6" fill="#ca8a04" />
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#ca8a04" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#ca8a04" stroke-width="2" />
+        </svg>
+    </div>
+
+    <div class="butterfly-container butterfly-4">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#d8b4fe" />
+                    <stop offset="100%" stop-color="#c084fc" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-purple)" />
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-purple)" />
+            <circle cx="50" cy="50" r="6" fill="#9333ea" />
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#9333ea" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#9333ea" stroke-width="2" />
+        </svg>
+    </div>
+
+    <div class="butterfly-container butterfly-5">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-coral" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fca5a5" />
+                    <stop offset="100%" stop-color="#f87171" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-coral)" />
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-coral)" />
+            <circle cx="50" cy="50" r="6" fill="#dc2626" />
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#dc2626" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#dc2626" stroke-width="2" />
+        </svg>
+    </div>
+
+    <div class="butterfly-container butterfly-6">
+        <svg viewBox="0 0 100 100" class="w-full h-full butterfly-wings" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <defs>
+                <linearGradient id="butterfly-mint" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#a7f3d0" />
+                    <stop offset="100%" stop-color="#6ee7b7" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="35" cy="50" rx="18" ry="25" fill="url(#butterfly-mint)" />
+            <ellipse cx="65" cy="50" rx="18" ry="25" fill="url(#butterfly-mint)" />
+            <circle cx="50" cy="50" r="6" fill="#059669" />
+            <line x1="50" y1="44" x2="45" y2="30" stroke="#059669" stroke-width="2" />
+            <line x1="50" y1="44" x2="55" y2="30" stroke="#059669" stroke-width="2" />
+        </svg>
+    </div>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
         <defs>
@@ -185,6 +334,9 @@
         <div class="max-w-2xl mx-auto px-4 relative z-10">
             <div class="bg-white/95 backdrop-blur-md rounded-[3rem] shadow-2xl p-6 md:p-12 text-center border-4 border-rose-100 fade-in-up mt-6 relative overflow-hidden">
                 
+                <!-- Silk ribbons decorativos -->
+                <div class="silk-ribbon" style="top: -10px; left: 20px; width: 200px; height: 80px; background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22><defs><linearGradient id=%22ribbonGrad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%23fda4af%22/><stop offset=%2250%25%22 stop-color=%22%23f43f5e%22/><stop offset=%22100%25%22 stop-color=%22%23be123c%22/></linearGradient></defs><path d=%22M10,20 Q50,40 100,10 Q150,40 190,20%22 stroke=%22url(%23ribbonGrad)%22 stroke-width=%228%22 fill=%22none%22 opacity=%220.6%22/></svg>'); background-size: contain; background-repeat: no-repeat;"></div>
+
                 <!-- Decorations -->
                 <div class="absolute -top-3 -left-3 w-16 h-16 transform rotate-45"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
                 <div class="absolute -top-3 -right-3 w-16 h-16 transform -rotate-45"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
@@ -448,7 +600,7 @@
                 snapshot.forEach((childSnapshot) => {
                     const wish = childSnapshot.val();
                     wish.id = childSnapshot.key;
-                    wishes.unshift(wish); // Agregar al principio para que los nuevos estén arriba
+                    wishes.unshift(wish);
                 });
 
                 if (wishes.length === 0) {
