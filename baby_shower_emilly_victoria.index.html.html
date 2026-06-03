@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower - Emilly Victoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-image: url('https://placehold.co/800x600/fff1f2/fda4af?text=Baby+Shower+Pattern'); /* Reemplazar con tu patrón si tienes uno */
+            background-repeat: repeat;
+            background-size: 320px auto;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #fff1f2;
+            overflow-x: hidden;
+        }
+        
+        .font-cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        #start-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #fecdd3, #fda4af, #f43f5e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .pulse {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .bow-container {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0.85;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        }
+
+        .bow-float-1 { top: 8%; left: -10%; animation: bow-path-1 15s infinite linear; }
+        .bow-float-2 { top: 32%; right: -10%; animation: bow-path-2 18s infinite linear; }
+        .bow-float-3 { top: 58%; left: -10%; animation: bow-path-1 14s infinite linear 2s; }
+        .bow-float-4 { top: 78%; right: -10%; animation: bow-path-2 16s infinite linear 1s; }
+
+        @keyframes bow-path-1 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translate(110vw, 150px) rotate(360deg) scale(0.8); opacity: 0; }
+        }
+
+        @keyframes bow-path-2 {
+            0% { transform: translate(0, 0) rotate(360deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translate(-110vw, 150px) rotate(0deg) scale(0.8); opacity: 0; }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #fb7185, transparent);
+            margin: 2.5rem 0;
+        }
+
+        .sparkle-btn {
+            background: linear-gradient(135deg, #f43f5e, #fda4af);
+            position: relative;
+            overflow: hidden;
+        }
+        .sparkle-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: shine 3.5s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translate(-30%, -30%) rotate(30deg); }
+            100% { transform: translate(100%, 100%) rotate(30deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased relative">
+
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_145d2e2cce.mp3?filename=lullaby-box-3456.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <defs>
+            <linearGradient id="pink-ribbon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fda4af" />
+                <stop offset="50%" stop-color="#f43f5e" />
+                <stop offset="100%" stop-color="#be123c" />
+            </linearGradient>
+            <linearGradient id="gold-ribbon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fef08a" />
+                <stop offset="50%" stop-color="#eab308" />
+                <stop offset="100%" stop-color="#a16207" />
+            </linearGradient>
+            <linearGradient id="knot-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffe4e6" />
+                <stop offset="100%" stop-color="#e11d48" />
+            </linearGradient>
+
+            <g id="silk-bow">
+                <path d="M50 45 C15 15 5 30 15 55 C25 70 45 55 50 45 Z" fill="url(#pink-ribbon-grad)" stroke="#9f1239" stroke-width="0.5"/>
+                <path d="M48 44 C25 25 15 35 25 50" fill="none" stroke="#ffe4e6" stroke-width="1" opacity="0.4"/>
+                <path d="M50 45 C85 15 95 30 85 55 C75 70 55 55 50 45 Z" fill="url(#pink-ribbon-grad)" stroke="#9f1239" stroke-width="0.5"/>
+                <path d="M52 44 C75 25 85 35 75 50" fill="none" stroke="#ffe4e6" stroke-width="1" opacity="0.4"/>
+                <path d="M47 47 C30 70 15 90 24 95 C30 98 42 75 47 47 Z" fill="url(#pink-ribbon-grad)" stroke="#be123c" stroke-width="0.5"/>
+                <path d="M53 47 C70 70 85 90 76 95 C70 98 58 75 53 47 Z" fill="url(#pink-ribbon-grad)" stroke="#be123c" stroke-width="0.5"/>
+                <rect x="44" y="39" width="12" height="12" rx="4" fill="url(#knot-grad)" stroke="#9f1239" stroke-width="0.5"/>
+            </g>
+
+            <g id="gold-bow">
+                <path d="M50 45 C15 15 5 30 15 55 C25 70 45 55 50 45 Z" fill="url(#gold-ribbon-grad)" stroke="#854d0e" stroke-width="0.5"/>
+                <path d="M48 44 C25 25 15 35 25 50" fill="none" stroke="#fef9c3" stroke-width="1" opacity="0.4"/>
+                <path d="M50 45 C85 15 95 30 85 55 C75 70 55 55 50 45 Z" fill="url(#gold-ribbon-grad)" stroke="#854d0e" stroke-width="0.5"/>
+                <path d="M52 44 C75 25 85 35 75 50" fill="none" stroke="#fef9c3" stroke-width="1" opacity="0.4"/>
+                <path d="M47 47 C30 70 15 90 24 95 C30 98 42 75 47 47 Z" fill="url(#gold-ribbon-grad)" stroke="#854d0e" stroke-width="0.5"/>
+                <path d="M53 47 C70 70 85 90 76 95 C70 98 58 75 53 47 Z" fill="url(#gold-ribbon-grad)" stroke="#854d0e" stroke-width="0.5"/>
+                <rect x="44" y="39" width="12" height="12" rx="4" fill="#fef08a" stroke="#854d0e" stroke-width="0.5"/>
+            </g>
+        </defs>
+    </svg>
+
+    <div id="start-screen">
+        <div class="text-center bg-white/95 p-8 md:p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-md max-w-sm mx-4 pulse cursor-pointer border-2 border-pink-200 relative overflow-hidden" onclick="startInvitation()">
+            <div class="text-rose-500 mb-4 flex justify-center">
+                <svg class="w-24 h-24 drop-shadow-md" viewBox="0 0 100 100">
+                    <use href="#silk-bow"/>
+                </svg>
+            </div>
+            <h2 class="font-cursive text-4xl text-rose-600 mb-1 font-bold">¡Estás Invitado/a!</h2>
+            <h3 class="text-gray-600 text-xs font-bold tracking-widest uppercase mb-4 text-rose-500">Al Baby Shower de Emilly Victoria</h3>
+            <p class="text-gray-500 mb-6 text-xs font-medium">Toca el gran moño de seda para abrir tu invitación interactiva con música 💖</p>
+            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition-transform transform active:scale-95 flex items-center justify-center gap-2 w-full">
+                <span>Abrir Invitación</span>
+                <i class="fa-solid fa-heart animate-ping text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <main id="main-content" class="min-h-screen pb-20 pt-8 hidden relative">
+        <!-- Floating bows -->
+        <div class="bow-container bow-float-1"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#silk-bow"/></svg></div>
+        <div class="bow-container bow-float-2"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
+        <div class="bow-container bow-float-3"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#silk-bow"/></svg></div>
+        <div class="bow-container bow-float-4"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
+
+        <div class="max-w-2xl mx-auto px-4 relative z-10">
+            <div class="bg-white/95 backdrop-blur-md rounded-[3rem] shadow-2xl p-6 md:p-12 text-center border-4 border-rose-100 fade-in-up mt-6 relative overflow-hidden">
+                
+                <!-- Decorations -->
+                <div class="absolute -top-3 -left-3 w-16 h-16 transform rotate-45"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
+                <div class="absolute -top-3 -right-3 w-16 h-16 transform -rotate-45"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
+
+                <div class="flex justify-center mb-4">
+                    <svg class="w-24 h-24 drop-shadow-md animate-bounce" viewBox="0 0 100 100"><use href="#silk-bow"/></svg>
+                </div>
+
+                <span class="text-xs md:text-sm text-rose-500 font-bold uppercase tracking-widest bg-rose-50 px-4 py-1.5 rounded-full border border-rose-100">
+                    Estás invitado/a al Baby Shower de
+                </span>
+                
+                <h1 class="font-cursive text-6xl md:text-8xl text-rose-600 my-6 drop-shadow-sm leading-tight font-bold">Emilly Victoria</h1>
+
+                <div class="flex justify-center -mt-2 mb-4">
+                    <svg class="w-12 h-12 opacity-85" viewBox="0 0 100 100"><use href="#silk-bow"/></svg>
+                </div>
+
+                <p class="text-gray-600 italic mb-8 max-w-md mx-auto text-base md:text-lg leading-relaxed">
+                    "Un pedacito de cielo está por llegar, y con mucho amor, dulzura y alegría te queremos invitar a celebrar."
+                </p>
+
+                <div class="divider"></div>
+
+                <!-- Date & Time -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 my-8 fade-in-up">
+                    <div class="text-center bg-rose-50/50 p-4 rounded-2xl border border-rose-100 w-full sm:w-40 shadow-sm relative">
+                        <div class="absolute -top-2 -right-2 w-8 h-8"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
+                        <div class="bg-rose-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 shadow-inner">
+                            <i class="fa-regular fa-calendar-heart text-xl text-rose-500"></i>
+                        </div>
+                        <p class="font-bold text-gray-700 text-sm">Sábado</p>
+                        <p class="text-rose-600 font-extrabold text-lg">11 de Julio</p>
+                    </div>
+                    <div class="hidden sm:block h-12 w-px bg-rose-200"></div>
+                    <div class="text-center bg-rose-50/50 p-4 rounded-2xl border border-rose-100 w-full sm:w-40 shadow-sm relative">
+                        <div class="absolute -top-2 -left-2 w-8 h-8"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
+                        <div class="bg-rose-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 shadow-inner">
+                            <i class="fa-regular fa-clock text-xl text-rose-500"></i>
+                        </div>
+                        <p class="font-bold text-gray-700 text-sm">Hora</p>
+                        <p class="text-rose-600 font-extrabold text-lg">1:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Location -->
+                <div class="my-8 fade-in-up">
+                    <div class="bg-rose-50/80 rounded-3xl p-6 shadow-inner border border-rose-100 relative">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-10 h-10"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
+                        <div class="text-rose-500 mt-2 mb-3"><i class="fa-solid fa-location-dot text-4xl animate-bounce"></i></div>
+                        <h3 class="font-bold text-gray-800 text-xl mb-1">Lugar del Evento</h3>
+                        <p class="text-rose-600 font-semibold mb-1 text-sm bg-rose-100/50 inline-block px-3 py-1 rounded-full border border-rose-200">Exclusivo & Reservado</p>
+                        <p class="text-gray-600 mb-5 mt-2 font-medium">Salón social de la Agrupación<br><strong class="text-gray-800">Málaga Castilla</strong></p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=agrupacion+Malaga+Castilla+Bogota" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-sm">
+                            <i class="fa-solid fa-map-location-dot"></i> Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- RSVP -->
+                <div class="my-8 fade-in-up">
+                    <div class="bg-gradient-to-br from-rose-50 to-rose-100/30 border border-rose-200 rounded-[2.5rem] p-6 md:p-8 shadow-sm relative overflow-hidden">
+                        <div class="absolute -top-3 -right-3 w-12 h-12 transform rotate-12"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
+                        <div class="text-rose-500 mb-3 flex justify-center"><i class="fa-brands fa-whatsapp text-4xl text-emerald-500 animate-pulse"></i></div>
+                        <h3 class="font-cursive text-5xl text-rose-600 mb-2 font-bold">Confirmación de Asistencia</h3>
+                        <p class="text-gray-600 text-xs md:text-sm max-w-md mx-auto mb-6 leading-relaxed">
+                            ¡Queremos preparar todo con muchísimo amor para recibirte! Puedes confirmar tu asistencia aquí abajo.
+                        </p>
+                        <div class="space-y-4 text-left max-w-sm mx-auto bg-white/95 p-5 rounded-2xl border border-rose-100 shadow-sm">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tu Nombre:</label>
+                                <input type="text" id="rsvp-guest-name" placeholder="Ej: Tu Nombre y Apellido" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium text-gray-800">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">¿Con cuántos acompañantes vas?</label>
+                                <div class="relative">
+                                    <select id="rsvp-companions" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium text-gray-700 appearance-none">
+                                        <option value="0">Solo yo 0 acompañantes</option>
+                                        <option value="1">Yo y 1 acompañante</option>
+                                        <option value="2">Yo y 2 acompañantes</option>
+                                        <option value="3">Yo y 3 acompañantes</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-rose-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="window.sendWhatsAppConfirmation()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-md flex items-center justify-center gap-2 transition-all transform active:scale-95 text-sm mt-2">
+                                <i class="fa-brands fa-whatsapp text-lg animate-bounce"></i> Confirmar Asistencia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Gifts -->
+                <div class="mt-8 fade-in-up">
+                    <div class="bg-rose-50/90 border-2 border-dashed border-rose-300 rounded-2xl p-4 mb-6 shadow-inner flex items-center justify-center gap-3 max-w-md mx-auto">
+                        <span class="flex h-3 w-3 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                        </span>
+                        <p class="text-xs md:text-sm font-bold text-rose-700 text-center">📌 ¡No olvides seleccionar tu regalo aquí abajo!</p>
+                    </div>
+                    <div class="flex justify-center mb-2"><svg class="w-16 h-16" viewBox="0 0 100 100"><use href="#silk-bow"/></svg></div>
+                    <h3 class="font-cursive text-5xl text-rose-500 mb-4">Lista de Regalos</h3>
+                    <div class="bg-white border-2 border-dashed border-rose-200 rounded-3xl p-6 relative shadow-sm">
+                        <p class="text-gray-600 mt-2 mb-6 text-sm md:text-base leading-relaxed">
+                            Agradecemos infinitamente tu cariño. Te invitamos a guiarte por nuestra lista virtual:
+                        </p>
+                        <a href="https://www.wishwave.com/lists/431ebd24-e047-4160-87a7-cfd23e9aa1e0" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-bold py-3.5 px-8 rounded-full transition-all mb-2 shadow-md text-sm transform hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-clipboard-list text-base"></i> Ver Lista en Wishwave
+                        </a>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Magic Wishes Box (Netlify Safe Version) -->
+                <div class="mt-8 fade-in-up">
+                    <div class="bg-gradient-to-br from-rose-50 via-rose-100/30 to-pink-50 rounded-3xl p-6 md:p-8 border border-rose-200 shadow-md relative overflow-hidden">
+                        <div class="absolute -bottom-3 -right-3 w-14 h-14 transform rotate-12 opacity-80"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
+
+                        <div class="relative z-10 text-center">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-500 text-white shadow-sm mb-3">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Muro de Deseos
+                            </span>
+                            <h3 class="font-cursive text-5xl text-rose-600 mb-2 font-bold">Cofre de Bendiciones</h3>
+                            <p class="text-gray-600 text-sm max-w-md mx-auto mb-6">
+                                Deja una bendición para Emilly. Generaremos un mensaje hermoso y podrás dejarlo en nuestro muro eterno.
+                            </p>
+
+                            <!-- Form -->
+                            <div class="space-y-4 text-left max-w-md mx-auto bg-white/80 p-5 rounded-2xl border border-rose-100 shadow-sm relative">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tu Nombre o Apodo:</label>
+                                    <input type="text" id="ai-guest-name" placeholder="Ej: Tía María, Tu Abuelita..." class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Relación:</label>
+                                        <select id="ai-guest-role" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium text-gray-700">
+                                            <option value="Familiar">Familiar</option>
+                                            <option value="Tío/a">Tío/a</option>
+                                            <option value="Abuelo/a">Abuelo/a</option>
+                                            <option value="Amigo/a">Amigo/a</option>
+                                            <option value="Padrino/Madrina">Padrino/Madrina</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tono:</label>
+                                        <select id="ai-wish-tone" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium text-gray-700">
+                                            <option value="Poético y Dulce">Poético y Dulce</option>
+                                            <option value="Alegre y Divertido">Divertido</option>
+                                            <option value="Inspirador y Moderno">Inspirador</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Elige 3 virtudes para Emilly:</label>
+                                    <div class="flex flex-wrap gap-2" id="virtues-container">
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Salud')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Salud</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Amor')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Amor</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Sabiduría')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Sabiduría</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Creatividad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Creatividad</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Felicidad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Felicidad</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Aventura')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-semibold transition-all">🎀 Aventura</button>
+                                    </div>
+                                </div>
+
+                                <button type="button" onclick="window.generateBlessingLocal()" class="sparkle-btn w-full text-white font-bold py-3 px-6 rounded-full shadow-md flex items-center justify-center gap-2 hover:opacity-95 transition-opacity active:scale-95 text-sm">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Crear Bendición
+                                </button>
+                            </div>
+
+                            <!-- Result Box -->
+                            <div id="ai-result-box" class="hidden mt-6 bg-white border-2 border-rose-300 p-5 rounded-3xl relative max-w-md mx-auto shadow-lg">
+                                <div class="absolute -top-3 right-4 bg-rose-500 text-white text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full">
+                                    Carta Creada ✉️
+                                </div>
+                                <p id="ai-output-text" class="text-rose-900 italic text-sm leading-relaxed mb-4"></p>
+                                
+                                <div class="flex flex-col gap-2 justify-center">
+                                    <button onclick="window.postToWallLocal()" id="btn-post-wall" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-1.5 transition-all">
+                                        <i class="fa-solid fa-star"></i> Dejar en el Muro
+                                    </button>
+                                    <button onclick="window.sendWishToWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-1.5 transition-all">
+                                        <i class="fa-brands fa-whatsapp"></i> Enviar Mensaje a Mamá
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wall -->
+                        <div class="mt-8 pt-6 border-t border-rose-200">
+                            <h4 class="font-bold text-gray-700 text-xs uppercase tracking-wider mb-4 flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-quote-left text-rose-400"></i> Muro de Deseos Eternos <i class="fa-solid fa-quote-right text-rose-400"></i>
+                            </h4>
+                            <div id="wishes-wall" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                                <!-- Deseos dinámicos cargados localmente -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="mt-8 mb-4 fade-in-up">
+                    <p class="text-gray-600 text-lg font-medium">¡Te esperamos para celebrar juntos!</p>
+                    <div class="text-rose-400 mt-4 flex justify-center items-center gap-3">
+                        <svg class="w-8 h-8" viewBox="0 0 100 100"><use href="#gold-bow"/></svg>
+                        <i class="fa-solid fa-heart animate-ping text-xs"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart animate-ping text-xs"></i>
+                        <svg class="w-8 h-8" viewBox="0 0 100 100"><use href="#gold-bow"/></svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const CONFIG_WHATSAPP_PHONE = "573203539302"; // Número de teléfono para confirmación y mensajes
+        let selectedVirtues = [];
+        
+        // Datos iniciales para que el muro nunca esté vacío
+        let localWishes = [
+            { name: "Familia García", role: "Tíos", text: "🎀 Querida Emilly Victoria, que tu vida esté colmada de Salud, Amor y Felicidad. ¡Te esperamos con ansias! 🎀" },
+            { name: "Abuela Carmen", role: "Abuela", text: "✨ Eres el pedacito de cielo que le faltaba a nuestra familia. Que Dios te llene de Sabiduría y Bendiciones. ✨" }
+        ];
+
+        // Cargar deseos adicionales del navegador (si la persona ya dejó uno)
+        const savedWishes = JSON.parse(localStorage.getItem('emilly_wishes') || '[]');
+        localWishes = [...savedWishes, ...localWishes];
+
+        function initApp() {
+            renderWishesWall();
+        }
+
+        // Renderizar el muro estático
+        function renderWishesWall() {
+            const wallContainer = document.getElementById('wishes-wall');
+            wallContainer.innerHTML = '';
+
+            localWishes.forEach(wish => {
+                const wishCard = document.createElement('div');
+                wishCard.className = 'bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-rose-100 shadow-sm relative flex flex-col justify-between overflow-hidden transform transition-all hover:-translate-y-1';
+                
+                wishCard.innerHTML = `
+                    <div class="absolute -top-1 -right-1 w-8 h-8 opacity-75">
+                        <svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between gap-1 mb-2">
+                            <span class="font-bold text-rose-600 text-sm">${wish.name}</span>
+                            <span class="text-[10px] bg-rose-100 text-rose-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">${wish.role}</span>
+                        </div>
+                        <p class="text-gray-600 text-xs leading-relaxed italic mb-2">"${wish.text}"</p>
+                    </div>
+                `;
+                wallContainer.appendChild(wishCard);
+            });
+        }
+
+        // Seleccionar virtudes
+        window.toggleVirtue = function(element, virtue) {
+            if (selectedVirtues.includes(virtue)) {
+                selectedVirtues = selectedVirtues.filter(v => v !== virtue);
+                element.classList.remove('bg-rose-500', 'text-white', 'border-rose-500');
+                element.classList.add('bg-rose-50', 'text-rose-600', 'border-rose-200');
+            } else {
+                if (selectedVirtues.length >= 3) {
+                    showCustomToast("Solo puedes elegir un máximo de 3 virtudes ✨");
+                    return;
+                }
+                selectedVirtues.push(virtue);
+                element.classList.remove('bg-rose-50', 'text-rose-600', 'border-rose-200');
+                element.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+            }
+        };
+
+        // Generar bendición usando plantillas internas (Seguro para Netlify)
+        window.generateBlessingLocal = function() {
+            const guestName = document.getElementById('ai-guest-name').value.trim() || 'Un ser querido';
+            const guestRole = document.getElementById('ai-guest-role').value;
+            const wishTone = document.getElementById('ai-wish-tone').value;
+
+            if (selectedVirtues.length === 0) {
+                showCustomToast("Elige al menos 1 virtud para Emilly Victoria 🧸");
+                return;
+            }
+
+            const outputBox = document.getElementById('ai-result-box');
+            const outputText = document.getElementById('ai-output-text');
+            
+            outputBox.classList.remove('hidden');
+            
+            // Completar virtudes faltantes si eligieron menos de 3
+            let v1 = selectedVirtues[0] || "Salud";
+            let v2 = selectedVirtues[1] || "Alegría";
+            let v3 = selectedVirtues[2] || "Amor";
+
+            let resultText = "";
+
+            if (wishTone === "Poético y Dulce") {
+                resultText = `🎀 Querida Emilly Victoria, que la vida te teja un camino lleno de ${v1}, ${v2} y ${v3}. Eres un pedacito de cielo que iluminará nuestros días. Con todo mi amor, ${guestName} (${guestRole}). 🎀`;
+            } else if (wishTone === "Alegre y Divertido") {
+                resultText = `🧸 ¡Hola pequeña Emilly Victoria! Prepárate para un mundo de aventuras con mucha ${v1}, ${v2} y ${v3}. ¡No podemos esperar para jugar contigo y llenarte de abrazos! Besos gigantes de ${guestName} (${guestRole}). 🧸`;
+            } else {
+                resultText = `✨ Emilly Victoria, llegas a hacer de este mundo un lugar mejor. Que nunca te falte ${v1}, ${v2} y ${v3} para alcanzar todos tus sueños. ¡Estamos listos para verte brillar! Con cariño, ${guestName} (${guestRole}). ✨`;
+            }
+
+            outputText.innerText = resultText;
+        };
+
+        // Guardar mensaje localmente
+        window.postToWallLocal = function() {
+            const guestName = document.getElementById('ai-guest-name').value.trim() || 'Un ser querido';
+            const guestRole = document.getElementById('ai-guest-role').value;
+            const text = document.getElementById('ai-output-text').innerText;
+
+            if (!text) return;
+
+            const newWish = { name: guestName, role: guestRole, text: text };
+            
+            // Añadir al inicio del muro local
+            localWishes.unshift(newWish);
+            
+            // Guardar en el navegador
+            const savedWishes = JSON.parse(localStorage.getItem('emilly_wishes') || '[]');
+            savedWishes.unshift(newWish);
+            localStorage.setItem('emilly_wishes', JSON.stringify(savedWishes));
+
+            renderWishesWall();
+            
+            document.getElementById('ai-result-box').classList.add('hidden');
+            showCustomToast("¡Tu bendición ha sido colgada en el Muro Mágico! 🎀☁️");
+            
+            // Limpiar formulario
+            document.getElementById('ai-guest-name').value = '';
+            document.querySelectorAll('.virtue-chip').forEach(el => {
+                el.classList.remove('bg-rose-500', 'text-white', 'border-rose-500');
+                el.classList.add('bg-rose-50', 'text-rose-600', 'border-rose-200');
+            });
+            selectedVirtues = [];
+        };
+
+        // Enviar deseo por WhatsApp
+        window.sendWishToWhatsApp = function() {
+            const text = document.getElementById('ai-output-text').innerText;
+            if (!text) return;
+
+            const message = `¡Hola! He dejado este deseo para la bebé en el muro mágico:\n\n${text}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${CONFIG_WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Enviar confirmación por WhatsApp
+        window.sendWhatsAppConfirmation = function() {
+            const guestName = document.getElementById('rsvp-guest-name').value.trim();
+            const companionsVal = document.getElementById('rsvp-companions').value;
+
+            if (!guestName) {
+                showCustomToast("Por favor, escribe tu nombre para enviar la confirmación 🧸");
+                return;
+            }
+
+            let companionsText = "";
+            if (companionsVal === "0") {
+                companionsText = "sin acompañantes";
+            } else if (companionsVal === "1") {
+                companionsText = "con 1 acompañante";
+            } else {
+                companionsText = `con ${companionsVal} acompañantes`;
+            }
+
+            const message = `Hola! Confirmo mi asistencia al baby shower de Emilly Victoria, asistiré ${companionsText}. Mi nombre es ${guestName}. ✨🎀`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${CONFIG_WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
+        };
+
+        // Toast messages
+        function showCustomToast(message) {
+            let toast = document.createElement('div');
+            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white font-semibold py-3 px-6 rounded-full shadow-2xl text-xs md:text-sm z-50 text-center flex items-center gap-2 animate-bounce border border-rose-400";
+            toast.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${message}</span>`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        // Pantalla de inicio y música
+        window.startInvitation = function() {
+            const startScreen = document.getElementById('start-screen');
+            const mainContent = document.getElementById('main-content');
+            const bgMusic = document.getElementById('bg-music');
+
+            bgMusic.volume = 0.4;
+            bgMusic.play().catch(() => console.log("Se requiere interacción manual de audio."));
+
+            startScreen.style.transform = 'translateY(-100vh)';
+            startScreen.style.opacity = '0';
+
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+                mainContent.classList.remove('hidden');
+                triggerAnimations();
+            }, 800);
+        };
+
+        // Animaciones al hacer scroll
+        function triggerAnimations() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            const windowHeight = window.innerHeight;
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 40) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', triggerAnimations);
+
+        // Iniciar base de datos local al cargar
+        initApp();
+    </script>
+</body>
+</html>
