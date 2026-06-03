@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-image: url('https://placehold.co/800x600/fff1f2/fda4af?text=Baby+Shower+Pattern'); /* Reemplazar con tu patrón si tienes uno */
+            background-image: url('https://placehold.co/800x600/fff1f2/fda4af?text=Baby+Shower+Pattern');
             background-repeat: repeat;
             background-size: 320px auto;
             background-position: center;
@@ -306,7 +306,7 @@
 
                 <div class="divider"></div>
 
-                <!-- Magic Wishes Box (Netlify Safe Version) -->
+                <!-- Magic Wishes Box -->
                 <div class="mt-8 fade-in-up">
                     <div class="bg-gradient-to-br from-rose-50 via-rose-100/30 to-pink-50 rounded-3xl p-6 md:p-8 border border-rose-200 shadow-md relative overflow-hidden">
                         <div class="absolute -bottom-3 -right-3 w-14 h-14 transform rotate-12 opacity-80"><svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg></div>
@@ -373,7 +373,7 @@
                                 <p id="ai-output-text" class="text-rose-900 italic text-sm leading-relaxed mb-4"></p>
                                 
                                 <div class="flex flex-col gap-2 justify-center">
-                                    <button onclick="window.postToWallLocal()" id="btn-post-wall" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                                    <button onclick="window.postToWallFirebase()" id="btn-post-wall" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
                                         <i class="fa-solid fa-star"></i> Dejar en el Muro
                                     </button>
                                     <button onclick="window.sendWishToWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
@@ -389,7 +389,7 @@
                                 <i class="fa-solid fa-quote-left text-rose-400"></i> Muro de Deseos Eternos <i class="fa-solid fa-quote-right text-rose-400"></i>
                             </h4>
                             <div id="wishes-wall" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-                                <!-- Deseos dinámicos cargados localmente -->
+                                <!-- Deseos dinámicos cargados desde Firebase -->
                             </div>
                         </div>
 
@@ -413,46 +413,70 @@
         </div>
     </main>
 
-    <script>
-        const CONFIG_WHATSAPP_PHONE = "573203539302"; // Número de teléfono para confirmación y mensajes
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAs0ma81yUjnobh1qP9dO3bxHCrkMIpI_Q",
+          authDomain: "baby-shower-emilly.firebaseapp.com",
+          databaseURL: "https://baby-shower-emilly-default-rtdb.firebaseio.com",
+          projectId: "baby-shower-emilly",
+          storageBucket: "baby-shower-emilly.firebasestorage.app",
+          messagingSenderId: "868343447179",
+          appId: "1:868343447179:web:a2648eb191da9070505e8e",
+          measurementId: "G-7E7X0S0B5P"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Variables globales
         let selectedVirtues = [];
-        
-        // Datos iniciales para que el muro nunca esté vacío
-        let localWishes = [
-            { name: "Familia García", role: "Tíos", text: "🎀 Querida Emilly Victoria, que tu vida esté colmada de Salud, Amor y Felicidad. ¡Te esperamos con ansias! 🎀" },
-            { name: "Abuela Carmen", role: "Abuela", text: "✨ Eres el pedacito de cielo que le faltaba a nuestra familia. Que Dios te llene de Sabiduría y Bendiciones. ✨" }
-        ];
+        window.firebaseDB = database;
 
-        // Cargar deseos adicionales del navegador (si la persona ya dejó uno)
-        const savedWishes = JSON.parse(localStorage.getItem('emilly_wishes') || '[]');
-        localWishes = [...savedWishes, ...localWishes];
-
-        function initApp() {
-            renderWishesWall();
-        }
-
-        // Renderizar el muro estático
-        function renderWishesWall() {
+        // Cargar deseos desde Firebase
+        function loadWishesFromFirebase() {
             const wallContainer = document.getElementById('wishes-wall');
-            wallContainer.innerHTML = '';
+            const wishesRef = ref(database, 'wishes');
 
-            localWishes.forEach(wish => {
-                const wishCard = document.createElement('div');
-                wishCard.className = 'bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-rose-100 shadow-sm relative flex flex-col justify-between overflow-hidden transform transition-all hover:shadow-md';
-                
-                wishCard.innerHTML = `
-                    <div class="absolute -top-1 -right-1 w-8 h-8 opacity-75">
-                        <svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg>
-                    </div>
-                    <div>
-                        <div class="flex items-center justify-between gap-1 mb-2">
-                            <span class="font-bold text-rose-600 text-sm">${wish.name}</span>
-                            <span class="text-[10px] bg-rose-100 text-rose-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">${wish.role}</span>
+            onValue(wishesRef, (snapshot) => {
+                wallContainer.innerHTML = '';
+                const wishes = [];
+
+                snapshot.forEach((childSnapshot) => {
+                    const wish = childSnapshot.val();
+                    wish.id = childSnapshot.key;
+                    wishes.unshift(wish); // Agregar al principio para que los nuevos estén arriba
+                });
+
+                if (wishes.length === 0) {
+                    const defaultWishes = [
+                        { name: "Familia García", role: "Tíos", text: "🎀 Querida Emilly Victoria, que tu vida esté colmada de Salud, Amor y Felicidad. ¡Te esperamos con ansias! 🎀" },
+                        { name: "Abuela Carmen", role: "Abuela", text: "✨ Eres el pedacito de cielo que le faltaba a nuestra familia. Que Dios te llene de Sabiduría y Bendiciones. ✨" }
+                    ];
+                    wishes.push(...defaultWishes);
+                }
+
+                wishes.forEach(wish => {
+                    const wishCard = document.createElement('div');
+                    wishCard.className = 'bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-rose-100 shadow-sm relative flex flex-col justify-between overflow-hidden transform transition-all hover:shadow-md';
+                    
+                    wishCard.innerHTML = `
+                        <div class="absolute -top-1 -right-1 w-8 h-8 opacity-75">
+                            <svg viewBox="0 0 100 100"><use href="#gold-bow"/></svg>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed italic mb-2">"${wish.text}"</p>
-                    </div>
-                `;
-                wallContainer.appendChild(wishCard);
+                        <div>
+                            <div class="flex items-center justify-between gap-1 mb-2">
+                                <span class="font-bold text-rose-600 text-sm">${wish.name}</span>
+                                <span class="text-[10px] bg-rose-100 text-rose-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">${wish.role}</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed italic mb-2">"${wish.text}"</p>
+                        </div>
+                    `;
+                    wallContainer.appendChild(wishCard);
+                });
             });
         }
 
@@ -473,7 +497,7 @@
             }
         };
 
-        // Generar bendición usando plantillas internas (Seguro para Netlify)
+        // Generar bendición
         window.generateBlessingLocal = function() {
             const guestName = document.getElementById('ai-guest-name').value.trim() || 'Un ser querido';
             const guestRole = document.getElementById('ai-guest-role').value;
@@ -489,7 +513,6 @@
             
             outputBox.classList.remove('hidden');
             
-            // Completar virtudes faltantes si eligieron menos de 3
             let v1 = selectedVirtues[0] || "Salud";
             let v2 = selectedVirtues[1] || "Alegría";
             let v3 = selectedVirtues[2] || "Amor";
@@ -507,30 +530,21 @@
             outputText.innerText = resultText;
         };
 
-        // Guardar mensaje localmente
-        window.postToWallLocal = function() {
+        // Guardar mensaje en Firebase
+        window.postToWallFirebase = function() {
             const guestName = document.getElementById('ai-guest-name').value.trim() || 'Un ser querido';
             const guestRole = document.getElementById('ai-guest-role').value;
             const text = document.getElementById('ai-output-text').innerText;
 
             if (!text) return;
 
-            const newWish = { name: guestName, role: guestRole, text: text };
+            const newWish = { name: guestName, role: guestRole, text: text, timestamp: new Date().getTime() };
             
-            // Añadir al inicio del muro local
-            localWishes.unshift(newWish);
-            
-            // Guardar en el navegador
-            const savedWishes = JSON.parse(localStorage.getItem('emilly_wishes') || '[]');
-            savedWishes.unshift(newWish);
-            localStorage.setItem('emilly_wishes', JSON.stringify(savedWishes));
+            push(ref(database, 'wishes'), newWish);
 
-            renderWishesWall();
-            
             document.getElementById('ai-result-box').classList.add('hidden');
             showCustomToast("¡Tu bendición ha sido colgada en el Muro Mágico! 🎀☁️");
             
-            // Limpiar formulario
             document.getElementById('ai-guest-name').value = '';
             document.querySelectorAll('.virtue-chip').forEach(el => {
                 el.classList.remove('bg-rose-500', 'text-white', 'border-rose-500');
@@ -546,7 +560,7 @@
 
             const message = `¡Hola! He dejado este deseo para la bebé en el muro mágico:\n\n${text}`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${CONFIG_WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/573203539302?text=${encodedMessage}`, '_blank');
         }
 
         // Enviar confirmación por WhatsApp
@@ -570,7 +584,7 @@
 
             const message = `Hola! Confirmo mi asistencia al baby shower de Emilly Victoria, asistiré ${companionsText}. Mi nombre es ${guestName}. ✨🎀`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${CONFIG_WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/573203539302?text=${encodedMessage}`, '_blank');
         };
 
         // Toast messages
@@ -619,8 +633,8 @@
 
         window.addEventListener('scroll', triggerAnimations);
 
-        // Iniciar base de datos local al cargar
-        initApp();
+        // Inicializar la página
+        loadWishesFromFirebase();
     </script>
 </body>
 </html>
