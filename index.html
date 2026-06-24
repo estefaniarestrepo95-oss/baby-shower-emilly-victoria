@@ -317,7 +317,7 @@
             <h2 class="font-cursive text-4xl text-rose-600 mb-1 font-bold">¡Estás Invitado/a!</h2>
             <h3 class="text-gray-600 text-xs font-bold tracking-widest uppercase mb-4 text-rose-500">Al Baby Shower de Emilly Victoria</h3>
             <p class="text-gray-500 mb-6 text-xs font-medium">Toca el gran moño de seda para abrir tu invitación interactiva con música 💖</p>
-            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition-transform transform active:scale-95 flex items-center justify-center gap-3 w-full">
+            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition-transform transform active:scale-95 flex items-center justify-center gap-2 mx-auto">
                 <span>Abrir Invitación</span>
                 <i class="fa-solid fa-heart animate-ping text-xs"></i>
             </button>
@@ -335,7 +335,7 @@
             <div class="bg-white/95 backdrop-blur-md rounded-[3rem] shadow-2xl p-6 md:p-12 text-center border-4 border-rose-100 fade-in-up mt-6 relative overflow-hidden">
                 
                 <!-- Silk ribbons decorativos -->
-                <div class="silk-ribbon" style="top: -10px; left: 20px; width: 200px; height: 80px; background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22><defs><linearGradient id=%22ribbonGrad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%23fda4af%22/><stop offset=%2250%25%22 stop-color=%22%23f43f5e%22/><stop offset=%22100%25%22 stop-color=%22%23be123c%22/></linearGradient></defs><path d=%22M10,20 Q50,40 100,10 Q150,40 190,20%22 stroke=%22url(%23ribbonGrad)%22 stroke-width=%228%22 fill=%22none%22 opacity=%220.6%22/></svg>'); background-size: contain; background-repeat: no-repeat;"></div>
+                <div class="silk-ribbon" style="top: -10px; left: 20px; width: 200px; height: 80px; background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22><path d=%22M0 40 Q50 0 100 40 T200 40%22 stroke=%22%23fda4af%22 fill=%22none%22 stroke-width=%222%22/></svg>'); background-repeat: no-repeat;"></div>
 
                 <!-- Decorations -->
                 <div class="absolute -top-3 -left-3 w-16 h-16 transform rotate-45"><svg viewBox="0 0 100 100" class="w-full h-full"><use href="#gold-bow"/></svg></div>
@@ -391,8 +391,11 @@
                         <div class="text-rose-500 mt-2 mb-3"><i class="fa-solid fa-location-dot text-4xl animate-bounce"></i></div>
                         <h3 class="font-bold text-gray-800 text-xl mb-1">Lugar del Evento</h3>
                         <p class="text-rose-600 font-semibold mb-1 text-sm bg-rose-100/50 inline-block px-3 py-1 rounded-full border border-rose-200">Exclusivo & Reservado</p>
-                        <p class="text-gray-600 mb-5 mt-2 font-medium">Salón social de la Agrupación<br><strong class="text-gray-800">Málaga Castilla</strong></p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=agrupacion+Malaga+Castilla+Bogota" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-5 rounded-full shadow-md transition-all">
+                        <p class="text-gray-600 mb-2 mt-2 font-medium">Salón social de la Agrupación<br><strong class="text-gray-800">Málaga Castilla</strong></p>
+                        <p class="text-gray-700 font-semibold mb-5 text-sm bg-rose-50 px-3 py-2 rounded-lg border border-rose-200">
+                            📍 Carrera 89a Bis #8A-18
+                        </p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Carrera+89a+Bis+8A-18+Bogota" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition-transform transform active:scale-95">
                             <i class="fa-solid fa-map-location-dot"></i> Ver en Google Maps
                         </a>
                     </div>
@@ -412,7 +415,7 @@
                         <div class="space-y-4 text-left max-w-sm mx-auto bg-white/95 p-5 rounded-2xl border border-rose-100 shadow-sm">
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tu Nombre:</label>
-                                <input type="text" id="rsvp-guest-name" placeholder="Ej: Tu Nombre y Apellido" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                                <input type="text" id="rsvp-guest-name" placeholder="Ej: Tu Nombre y Apellido" class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 placeholder-gray-400" />
                             </div>
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">¿Con cuántos acompañantes vas?</label>
@@ -426,7 +429,7 @@
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-rose-500"><i class="fa-solid fa-chevron-down text-xs"></i></div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.sendWhatsAppConfirmation()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-md flex items-center justify-center gap-2 transition-all">
+                            <button type="button" onclick="window.sendWhatsAppConfirmation()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center gap-2">
                                 <i class="fa-brands fa-whatsapp text-lg animate-bounce"></i> Confirmar Asistencia
                             </button>
                         </div>
@@ -450,7 +453,7 @@
                         <p class="text-gray-600 mt-2 mb-6 text-sm md:text-base leading-relaxed">
                             Agradecemos infinitamente tu cariño. Te invitamos a guiarte por nuestra lista virtual:
                         </p>
-                        <a href="https://www.wishwave.com/lists/431ebd24-e047-4160-87a7-cfd23e9aa1e0" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-5 rounded-full shadow-md transition-all">
+                        <a href="https://www.wishwave.com/lists/431ebd24-e047-4160-87a7-cfd23e9aa1e0" target="_blank" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition-transform transform active:scale-95">
                             <i class="fa-solid fa-clipboard-list text-base"></i> Ver Lista en Wishwave
                         </a>
                     </div>
@@ -476,7 +479,7 @@
                             <div class="space-y-4 text-left max-w-md mx-auto bg-white/80 p-5 rounded-2xl border border-rose-100 shadow-sm relative">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tu Nombre o Apodo:</label>
-                                    <input type="text" id="ai-guest-name" placeholder="Ej: Tía María, Tu Abuelita..." class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                                    <input type="text" id="ai-guest-name" placeholder="Ej: Tía María, Tu Abuelita..." class="w-full bg-rose-50/50 border border-rose-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 placeholder-gray-400" />
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-3">
@@ -503,16 +506,16 @@
                                 <div>
                                     <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Elige 3 virtudes para Emilly:</label>
                                     <div class="flex flex-wrap gap-2" id="virtues-container">
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Salud')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Salud</button>
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Amor')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Amor</button>
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Sabiduría')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Sabiduría</button>
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Creatividad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Creatividad</button>
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Felicidad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Felicidad</button>
-                                        <button type="button" onclick="window.toggleVirtue(this, 'Aventura')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">Aventura</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Salud')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Salud</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Amor')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Amor</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Sabiduría')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Sabiduría</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Creatividad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Creatividad</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Felicidad')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Felicidad</button>
+                                        <button type="button" onclick="window.toggleVirtue(this, 'Aventura')" class="virtue-chip bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold transition-all">Aventura</button>
                                     </div>
                                 </div>
 
-                                <button type="button" onclick="window.generateBlessingLocal()" class="sparkle-btn w-full text-white font-bold py-3 px-6 rounded-full shadow-md flex items-center justify-center gap-2 transition-all">
+                                <button type="button" onclick="window.generateBlessingLocal()" class="sparkle-btn w-full text-white font-bold py-3 px-6 rounded-full shadow-md flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-wand-magic-sparkles"></i> Crear Bendición
                                 </button>
                             </div>
@@ -525,10 +528,10 @@
                                 <p id="ai-output-text" class="text-rose-900 italic text-sm leading-relaxed mb-4"></p>
                                 
                                 <div class="flex flex-col gap-2 justify-center">
-                                    <button onclick="window.postToWallFirebase()" id="btn-post-wall" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                                    <button onclick="window.postToWallFirebase()" id="btn-post-wall" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-transform transform active:scale-95">
                                         <i class="fa-solid fa-star"></i> Dejar en el Muro
                                     </button>
-                                    <button onclick="window.sendWishToWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                                    <button onclick="window.sendWishToWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 transition-transform transform active:scale-95">
                                         <i class="fa-brands fa-whatsapp"></i> Enviar Mensaje a Mamá
                                     </button>
                                 </div>
@@ -742,7 +745,7 @@
         // Toast messages
         function showCustomToast(message) {
             let toast = document.createElement('div');
-            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white font-semibold py-3 px-6 rounded-full shadow-2xl text-xs md:text-sm z-50 text-center flex items-center gap-2";
+            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white font-semibold py-3 px-6 rounded-full shadow-2xl text-xs md:text-sm z-50 text-center flex items-center justify-center gap-2 animate-bounce";
             toast.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${message}</span>`;
             document.body.appendChild(toast);
             
